@@ -1,0 +1,24 @@
+notifiers: # 定义 Notifier，可以定义多个，会根据 name 进行区分
+  - name: m1 # Notifier 的名称，区分大小写，不能重复，不然先定义的会被覆盖
+    type: mail # Notifier 类型，不区分大小写，目前类型有 mail: 发送邮件 或 toast: 桌面提示
+    option: # mail 的配置项
+      host: smtp.163.com # smtp 服务器的 host
+      port: 25 # smtp 的端口
+      account: test@163.com # 发件邮箱账号
+      password: test # 发件邮箱密码，有些邮箱是授权码
+      receiver: i@shangyes.net # 收件邮箱
+      test: true # 如果设置为 true，则初始化时立即发送一封邮件，验证是否能正常发送
+  - name: "m2 toast" # 名称也可以用双引号括起来
+    type: toast
+    # toast 没有可配置项，所以没有 option
+
+tasks: # 定义要监听 GPA 的账号，可以定义多个
+  - username: 2018xxxx # 账号，也就是学号
+    password: passxxxx # 一网通密码
+    use: ["m1", "m2 toast"] # 数组，表示要在这个账号上用的 Notifier，一个 Notifier 可以被多个 user 共用
+    webvpn: true # 是否使用 webvpn，默认不使用，如果访问遇到问题可以启用
+    interval: 60 # 每间隔多久查询一次 GPA，默认 60，单位秒
+  - username: 2018yyyy
+    password: passyyyy
+    use: ["m1"]
+    # 省略了 webvpn 和 interval

@@ -1,0 +1,54 @@
+# 配置文件，yaml格式，注意缩进
+# 配置完整参数及含义请查看 https://github.com/neucn/teemo/blob/master/schema.yaml
+# 以下提供几套不同的配置，按需去掉注释并改写参数即可
+
+
+# 直接在 windows 或有桌面环境的 linux 上使用，希望使用系统级提示的：
+#notifiers:
+#  - name: toast
+#    type: toast
+#
+#tasks:
+#  - username: 你的学号
+#    password: 你的密码
+#    use: ["toast"]
+#    interval: 监听间隔，单位秒，如果不设置默认60，建议大于等于60
+
+
+# 希望使用邮件提示的：
+#notifiers:
+#  - name: mail
+#    type: mail
+#    option:
+#      host: smtp 服务器的 host
+#      port: smtp 的端口
+#      account: 发件邮箱
+#      password: 发件邮箱密码，部分邮箱是授权码
+#      receiver: 收件邮箱
+#      test: true
+#
+#tasks:
+#  - username: 你的学号
+#    password: 你的密码
+#    use: ["mail"]
+#    interval: 监听间隔，单位秒，如果不设置默认60，建议大于等于60
+
+# 希望同时使用邮件和系统提示的：
+#notifiers:
+#  - name: mail
+#    type: mail
+#    option:
+#      host: smtp 服务器的 host
+#      port: smtp 的端口
+#      account: 发件邮箱
+#      password: 发件邮箱密码，部分邮箱是授权码
+#      receiver: 收件邮箱
+#      test: true
+#  - name: toast
+#    type: toast
+#
+#tasks:
+#  - username: 你的学号
+#    password: 你的密码
+#    use: ["mail", "toast"]
+#    interval: 监听间隔，单位秒，如果不设置默认60，建议大于等于60
