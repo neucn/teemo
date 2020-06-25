@@ -30,15 +30,7 @@
 
 ## 下载
 
-进入本仓库 [Release 页面](https://github.com/neucn/teemo/releases/latest) 下载压缩包
-
-- Windows:
-
-    将解压后的`teemo.exe`所在目录的路径加入环境变量 `path` 中
-    
-- Linux:
-  
-    建议直接解压到 `/usr/local/bin` 下
+进入本仓库 [Release 页面](https://github.com/neucn/teemo/releases/latest) 下载最新压缩包后解压即可
 
 ## 更新
 
@@ -46,25 +38,47 @@
 
 ## 使用
 
-本工具为命令行工具，需要在控制台使用。
+解压后修改目录下的 `config.yaml` 或参照 [Schema](https://github.com/neucn/teemo/blob/master/schema.yaml) 自行编写配置
 
-```
-teemo -u 学号 -p 密码
-    如 teemo -u 2018xxxx -p abcdefg
+- Windows:
 
-teemo -u 学号 -p 密码 -f 监控频率(单位秒)
-    如 teemo -u 2018xxxx -p abcdefg -f 60
+    编写好配置文件后双击打开`teemo.exe`即可
+    
+    也可以通过控制台使用
+    ```shell script
+    teemo.exe
+  
+    # 也可以自己指定配置文件的路径，默认是程序所在目录下的 config.yaml
+    teemo.exe -i path/to/config.yaml 
+  
+    # 如果把目录加入了环境变量 path 中，则可以
+    teemo
+    ```
+    
+- Linux:
+  
+    编写好配置文件后可直接通过命令行使用
+    ```shell script
+    # 初次使用时赋予执行权限
+    chmod +x ./teemo
+  
+    # 直接使用
+    teemo
+  
+    # 指定配置文件的路径
+    teemo -i path/to/config.yaml 
+    ```
+  
+    建议对`teemo`建立软连接，从而可以全局使用
+    
+    ```shell script
+    ln -s teemo可执行文件的路径 /usr/local/bin/teemo
+    ```
 
-teemo -u 学号 -p 密码 -v 使用webvpn
-    如 teemo -u 2018xxxx -p abcdefg -v
 
-若不指定f，默认60
-```
-
-> 监听中请不要关闭程序和控制台
+> - 监听中请不要关闭程序和控制台
 > 
 > - Linux 下可以使用类似于`nohup`等工具使程序在后台运行
-
 
 
 ## 开源协议
