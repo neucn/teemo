@@ -1,6 +1,7 @@
 # $1 directory
 function pack() {
   cp -r ../img/ "$1/"
+  cp -r ../config.yaml "$1/"
   cd "$1/" || exit
   zip -r "../$1.zip" *
   cd ../
