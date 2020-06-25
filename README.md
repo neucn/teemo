@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/neucn/teemo/master/.github/img/logo.png" alt="logo" width="200">
+    <img src="https://github.com/neucn/teemo/blob/master/docs/logo.png?raw=true" alt="logo" width="200">
 </p>
 
 <h1 align="center">Teemo</h1>
@@ -14,11 +14,11 @@
 
 <p align="center">Windows</p>
 <p align="center">
-    <img src="https://raw.githubusercontent.com/neucn/teemo/master/.github/img/demo@windows.png" alt="windows demo">
+    <img src="https://github.com/neucn/teemo/blob/master/docs/demo@windows.png?raw=true" alt="windows demo">
 </p>
 <p align="center">Linux</p>
 <p align="center">
-    <img src="https://raw.githubusercontent.com/neucn/teemo/master/.github/img/demo@linux.png" alt="linux demo">
+    <img src="https://github.com/neucn/teemo/blob/master/docs/demo@linux.png?raw=true" alt="linux demo">
 </p>
 
 ## 系统要求
