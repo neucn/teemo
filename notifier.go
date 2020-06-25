@@ -6,6 +6,7 @@ import (
 	"github.com/mitchellh/mapstructure"
 	"github.com/unbyte/beeep"
 	"gopkg.in/gomail.v2"
+	"strings"
 	"time"
 )
 
@@ -53,6 +54,10 @@ func (m *mail) send(title, content string) error {
 	msg.SetBody("text/html", content)
 
 	if err := m.dialer.DialAndSend(msg); err != nil {
+		if strings.Contains(err.Error(), "TLS handshake") {
+			m.dialer.SSL = false
+			return m.send(title, content)
+		}
 		return errors.New("邮件发送失败: " + err.Error())
 	}
 	return nil
@@ -68,6 +73,8 @@ func newMail(option map[string]interface{}) (notifier, error) {
 		return nil, errors.New("邮箱配置有误")
 	}
 	m.dialer = gomail.NewDialer(m.Host, m.Port, m.Account, m.Password)
+	// 暂时先 true，实际发送时验证是否为启用 ssl，如果不是再设为 false
+	m.dialer.SSL = true
 	if test, ok := option["test"].(bool); ok && test {
 		if err := m.send("GPA 监听 邮件测试", time.Now().Format("2006-01-02 15:04:05")); err != nil {
 			return nil, errors.New("测试未通过: " + err.Error())
