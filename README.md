@@ -99,8 +99,8 @@
 
 > - 监听中请不要关闭程序和控制台
 > 
-> - Linux 下可以使用类似于`nohup`等工具使程序在后台运行
+> - Linux 下可以用类似 `nohup teemo &` 的方式使程序在后台运行
 
 
 ## 开源协议
-Mit License.
+MIT License.
