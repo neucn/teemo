@@ -22,6 +22,9 @@ type task struct {
 
 	// 存储上一次获取的 GPA
 	gpa float64
+
+	// 重试次数
+	retry byte
 }
 
 var gpaExp = regexp.MustCompile(`<div>总平均绩点：(.+?)</div>`)
@@ -44,6 +47,15 @@ func (t *task) handle() {
 	newGPA, err := t.getGPA()
 	if err != nil {
 		log.Printf("%s\t获取失败: %s\n", t.Username, err.Error())
+		if t.retry < 2 {
+			t.retry += 1
+			log.Printf("%s\t尝试重新登陆 第 %d 次\n", t.Username, t.retry)
+
+			time.Sleep(3 * time.Second)
+
+			_ = t.login()
+			t.handle()
+		}
 		return
 	}
 	log.Printf("%s\t绩点: %.4f\n", t.Username, newGPA)
@@ -72,6 +84,7 @@ func (t *task) Start() error {
 	log.Printf("%s\t登陆成功\n", t.Username)
 	go func() {
 		for {
+			t.retry = 0
 			t.handle()
 			time.Sleep(t.Interval)
 		}
