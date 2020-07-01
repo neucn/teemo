@@ -1,6 +1,6 @@
 notifiers:                      # 定义 Notifier，可以定义多个，会根据 name 进行区分
   - name: m1                    # Notifier 的名称，区分大小写，不能重复，不然先定义的会被覆盖
-    type: mail                  # Notifier 类型，不区分大小写，目前类型有 mail: 发送邮件 或 toast: 桌面提示
+    type: mail                  # Notifier 类型，不区分大小写，目前类型有 mail: 发送邮件 或 ding: 钉钉 或 toast: 桌面提示
     option:                     # mail 的配置项
       host: smtp.163.com        # smtp 服务器的 host
       port: 25                  # smtp 的端口
@@ -12,6 +12,12 @@ notifiers:                      # 定义 Notifier，可以定义多个，会根�
   - name: "m2 toast"            # 名称也可以用双引号括起来
     type: toast
                                 # toast 没有可配置项，所以没有 option
+  - name: "dingding"
+    type: ding
+    option:
+      token: xxxxxx             # 钉钉群组自定义机器人 access_token
+      secret: xxxxxx            # 钉钉群组自定义机器人 安全设置 - 加密 得到的 secret
+      test: true                # 如果设置为 true，则初始化时立即发送一段测试信息，验证是否能正常发送
 
 tasks:                          # 定义要监听 GPA 的账号，可以定义多个
   - username: 2018xxxx          # 账号，也就是学号

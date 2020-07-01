@@ -52,3 +52,18 @@
 #    password: 你的密码
 #    use: ["mail", "toast"]
 #    interval: 监听间隔，单位秒，如果不设置默认60，建议大于等于60
+
+# 希望使用钉钉提示的：
+#notifiers:
+#  - name: dingding
+#    type: ding
+#    option:
+#      token: 自定义机器人的 token
+#      secret: 自定义机器人-安全设置-加密 中的 secret
+#      test: true
+#
+#tasks:
+#  - username: 你的学号
+#    password: 你的密码
+#    use: ["dingding"]
+#    interval: 监听间隔，单位秒，如果不设置默认60，建议大于等于60

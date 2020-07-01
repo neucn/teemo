@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/mitchellh/mapstructure"
 	"github.com/unbyte/beeep"
+	"github.com/unbyte/dingbot"
 	"gopkg.in/gomail.v2"
 	"strings"
 	"time"
@@ -19,6 +20,7 @@ type notifierFactory func(option map[string]interface{}) (notifier, error)
 var notifiers = map[string]notifierFactory{
 	"mail":  newMail,
 	"toast": newToast,
+	"ding":  newDing,
 }
 
 type mail struct {
@@ -99,4 +101,40 @@ func (t *toast) Notify(username string, newGPA, oldGPA float64) error {
 
 func newToast(_ map[string]interface{}) (notifier, error) {
 	return &toast{}, nil
+}
+
+type ding struct {
+	Token  string
+	Secret string
+
+	Bot dingbot.Bot
+}
+
+func (d *ding) Notify(username string, newGPA, oldGPA float64) error {
+	diff := newGPA - oldGPA
+	var content string
+	if diff > 0 {
+		content = fmt.Sprintf("%s\n绩点上升了\t%.4f\n当前绩点\t%.4f", username, diff, newGPA)
+	} else {
+		content = fmt.Sprintf("%s\n绩点降低了\t%.4f\n当前绩点\t%.4f", username, -diff, newGPA)
+	}
+	return d.Bot.Text(content, nil, false)
+}
+
+func newDing(option map[string]interface{}) (notifier, error) {
+	d := &ding{}
+	err := mapstructure.Decode(option, d)
+	if err != nil {
+		return nil, err
+	}
+	if len(d.Token) == 0 || len(d.Secret) == 0 {
+		return nil, errors.New("钉钉配置有误")
+	}
+	d.Bot = dingbot.New(d.Token, d.Secret)
+	if test, ok := option["test"].(bool); ok && test {
+		if err := d.Bot.Text("GPA 监听 钉钉测试", nil, false); err != nil {
+			return nil, errors.New("测试未通过: " + err.Error())
+		}
+	}
+	return d, nil
 }
