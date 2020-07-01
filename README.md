@@ -35,24 +35,9 @@
 
 配置分为两部分，`notifiers` 以及 `tasks`，分别定义了通知相关的配置和监听相关的配置
 
+目前支持三种通知方式: 邮件通知，钉钉通知，桌面通知。三者可以同时使用。
+
 更多配置说明请参阅 [Schema](https://github.com/neucn/teemo/blob/master/schema.yaml).
-
-
-
-目前支持两种通知方式: 邮件通知，钉钉通知，桌面通知。三者可以同时使用。
-
-其中桌面通知效果图如图：
-
-<p align="center">Windows</p>
-<p align="center">
-    <img src="https://github.com/neucn/teemo/blob/master/docs/demo@windows.png?raw=true" alt="windows demo" style="zoom: 80%">
-</p>
-<p align="center">Linux</p>
-<p align="center">
-    <img src="https://github.com/neucn/teemo/blob/master/docs/demo@linux.png?raw=true" alt="linux demo" style="zoom: 80%">
-</p>
-
-
 
 ## 使用
 
