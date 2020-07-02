@@ -99,7 +99,12 @@ func (t *toast) Notify(username string, newGPA, oldGPA float64) error {
 	return beeep.Notify("绩点降低了", fmt.Sprintf("%s 绩点降低了\t%.4f\n当前绩点\t%.4f", username, -diff, newGPA), downPath)
 }
 
-func newToast(_ map[string]interface{}) (notifier, error) {
+func newToast(option map[string]interface{}) (notifier, error) {
+	if test, ok := option["test"].(bool); ok && test {
+		if err := beeep.Notify("GPA 监听 通知测试", "配图应是向上的箭头", upPath); err != nil {
+			return nil, errors.New("测试未通过: " + err.Error())
+		}
+	}
 	return &toast{}, nil
 }
 

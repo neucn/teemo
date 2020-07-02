@@ -11,7 +11,9 @@ notifiers:                      # 定义 Notifier，可以定义多个，会根�
 
   - name: "m2 toast"            # 名称也可以用双引号括起来
     type: toast
-                                # toast 没有可配置项，所以没有 option
+    option:
+      test: true                # 如果设置为 true，则初始化时立即发送测试通知，验证是否能正常发送
+
   - name: "dingding"
     type: ding
     option:
@@ -29,4 +31,4 @@ tasks:                          # 定义要监听 GPA 的账号，可以定义�
   - username: 2018yyyy
     password: passyyyy
     use: ["m1"]
-                            # 省略了 webvpn 和 interval
+                            # 省略了 webvpn 和 interval 两个参数
