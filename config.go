@@ -40,6 +40,8 @@ func (c *config) GenerateNotifiers() error {
 	return nil
 }
 
+const gradeUrl = "http://219.216.96.4/eams/teach/grade/course/person!search.action?semesterId=0"
+
 func (c *config) GenerateTasks() ([]*task, error) {
 	if len(c.Tasks) == 0 {
 		return nil, errors.New("未设置 Task")
@@ -69,10 +71,10 @@ func (c *config) GenerateTasks() ([]*task, error) {
 
 		if u.Webvpn {
 			t.Platform = neugo.WebVPN
-			t.URL = "https://219-216-96-4.webvpn.neu.edu.cn/eams/teach/grade/course/person!search.action?semesterId=0"
+			t.URL = neugo.EncryptWebVPNUrl(gradeUrl)
 		} else {
 			t.Platform = neugo.CAS
-			t.URL = "http://219.216.96.4/eams/teach/grade/course/person!search.action?semesterId=0"
+			t.URL = gradeUrl
 		}
 
 		session := neugo.NewSession()

@@ -1,6 +1,6 @@
 # 配置文件，yaml格式，注意缩进
 # 配置完整参数及含义请查看 https://github.com/neucn/teemo/blob/master/schema.yaml
-# 以下提供几套不同的配置，按需去掉注释并改写参数即可
+# 以下提供几套不同的配置，按需去掉每一行开头的"#"并改写参数即可
 
 
 # 直接在 windows 或有桌面环境的 linux 上使用，希望使用系统级提示的：
