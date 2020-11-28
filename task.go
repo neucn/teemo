@@ -93,5 +93,5 @@ func (t *task) Start() error {
 }
 
 func (t *task) login() error {
-	return neugo.Use(t.Session).WithAuth(t.Username, t.Password).On(t.Platform).Login()
+	return neugo.Use(t.Session).WithAuth(t.Username, t.Password).Login(t.Platform)
 }

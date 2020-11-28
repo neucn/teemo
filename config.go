@@ -71,7 +71,7 @@ func (c *config) GenerateTasks() ([]*task, error) {
 
 		if u.Webvpn {
 			t.Platform = neugo.WebVPN
-			t.URL = neugo.EncryptWebVPNUrl(gradeUrl)
+			t.URL = neugo.EncryptToWebVPN(gradeUrl)
 		} else {
 			t.Platform = neugo.CAS
 			t.URL = gradeUrl
